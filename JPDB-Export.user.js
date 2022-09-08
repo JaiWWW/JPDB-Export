@@ -8,8 +8,7 @@
 // @match        https://jpdb.io/add-to-deck-from-shirabe-jisho*
 // @require      https://raw.githubusercontent.com/eligrey/FileSaver.js/master/dist/FileSaver.js
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=jpdb.io
-// @updateURL    https://github.com/JaiWWW/JPDB-Export
-// @downloadURL  https://github.com/JaiWWW/JPDB-Export/raw/main/JPDB-Export.user.js
+// @homepage     https://github.com/JaiWWW/JPDB-Export
 // @supportURL   https://github.com/JaiWWW/JPDB-Export/issues
 // @grant        none
 // ==/UserScript==
