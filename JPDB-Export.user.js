@@ -2,7 +2,7 @@
 // @name         JPDB-Export
 // @namespace    http://tampermonkey.net/
 // @version      1.0
-// @description  Adds a button to export deck contents, plus some other minor changes (see below for full details)
+// @description  Adds a button to export deck contents, plus some other minor changes (see readme on github for full details)
 // @author       JaiWWW
 // @match        https://jpdb.io/deck*
 // @match        https://jpdb.io/add-to-deck-from-shirabe-jisho*
