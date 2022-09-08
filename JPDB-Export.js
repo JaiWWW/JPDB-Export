@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         jpdb | Deck export
+// @name         JPDB-Export
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Adds a button to export deck contents, plus some other minor changes (see below for full details)
@@ -46,7 +46,7 @@ To do:
                 supported = true;
             } catch (e) {
                 supported = false;
-                const errorMessage = 'Userscript "jpdb | Deck export":\n\nSorry, your browser does not support the system used to download files. Please see this link for more information: https://github.com/eligrey/FileSaver.js#user-content-supported-browsers\n\nDo you want to go to this link now? (opens in new tab)';
+                const errorMessage = 'Userscript "JPDB-Export":\n\nSorry, your browser does not support the system used to download files. Please see this link for more information: https://github.com/eligrey/FileSaver.js#user-content-supported-browsers\n\nDo you want to go to this link now? (opens in new tab)';
                 if (confirm(errorMessage)) { // If they click OK to go to the link
                     window.open("https://github.com/eligrey/FileSaver.js#user-content-supported-browsers");
                 }
