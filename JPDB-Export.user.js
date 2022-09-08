@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPDB-Export
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      1.0
 // @description  Adds a button to export deck contents, plus some other minor changes (see below for full details)
 // @author       JaiWWW
 // @match        https://jpdb.io/deck*
