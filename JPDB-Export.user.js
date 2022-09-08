@@ -10,6 +10,7 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=jpdb.io
 // @updateURL    https://github.com/JaiWWW/JPDB-Export
 // @downloadURL  https://github.com/JaiWWW/JPDB-Export/raw/main/JPDB-Export.user.js
+// @supportURL   https://github.com/JaiWWW/JPDB-Export/issues
 // @grant        none
 // ==/UserScript==
 
