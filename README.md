@@ -8,4 +8,4 @@
 
 ## Installation
 
-> To install this script, make sure you have a script manager and then click [here](https://github.com/JaiWWW/JPDB-Export/raw/main/JPDB-Export.user.js), or click <u>JPDB-Export.user.js</u> above and then click the **Raw** button.
+> To install this script, make sure you have a script manager and then click [here](https://github.com/JaiWWW/JPDB-Export/raw/main/JPDB-Export.user.js), or click <ins>JPDB-Export.user.js</ins> above and then click the **Raw** button.
