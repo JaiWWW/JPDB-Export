@@ -31,3 +31,4 @@
 - Find the page count before showing the warning and don't show if it's low
 > Maybe even give an estimate of how long it will take on certain setups, but this will require a lot of testing help
 - Add a full changelog to github
+- Add some debug code to make debugging easier and quicker
