@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         JPDB-Export
 // @namespace    http://tampermonkey.net/
-// @version      1.1.2
-// @description  Adds a button to export deck contents, plus some other minor changes (see readme on github for full details)
+// @version      1.1.3
+// @description  Allows you to export your JPDB decks (see readme on github for more info)
 // @author       JaiWWW
 // @match        https://jpdb.io/deck*
 // @match        https://jpdb.io/add-to-deck-from-shirabe-jisho*
@@ -41,7 +41,7 @@
 
             if (supported) {
 
-                inProgress = GM_getValue('inProgress')
+                inProgress = GM_getValue('inProgress');
                 const confirmationMessage = "Exporting your deck may take some time if it has a lot of pages. Continue?";
                 if (inProgress || confirm(confirmationMessage)) { // If they are already in progress of click OK to start export
 
@@ -75,7 +75,7 @@
 
                     function createFileName() { // Create a file name and upload to storage
 
-                        const container = document.getElementsByClassName("container bugfix")[0];
+                        const container = document.querySelector("body > div.container.bugfix");
                         const deckName = container.firstChild.nextSibling.textContent;
                         const current = new Date();
                         const time = current.toLocaleTimeString();
@@ -96,7 +96,7 @@
 
                     function lastPage() { // Test if we are on the last page or not
 
-                        const pagination = document.getElementsByClassName('container bugfix')[0].children[10]; // Div that shows "Next page"
+                        const pagination = document.querySelector("body > div.container.bugfix > div.pagination"); // Div that shows "Next page"
                         if (pagination.textContent.indexOf("Next page") < 0) { // Last page
                             return true;
                         } else { // More pages to go
@@ -150,8 +150,7 @@
         }
 
         let inProgress = GM_getValue('inProgress'); // inProgress will store true if in progress and false otherwise
-        const ULs = document.getElementsByTagName("ul"); // An array of all unordered list elements
-        const menu = ULs[0];
+        const menu = document.querySelector("body > div.container.bugfix > div.dropdown > details > div").firstChild; // UL of options in the menu
         const shirabe = menu.getElementsByTagName("li")[5]; // The "Import from Shirabe Jisho" button
         shirabe.firstChild.lastChild.setAttribute('value', 'Import from CSV'); // Rename to "Import from CSV"
 
@@ -168,10 +167,10 @@
 
     if (URL.startsWith('https://jpdb.io/add-to')) { // Import page
 
-        const heading = document.getElementsByTagName("h4")[0]; // "Import from Shirabe Jisho" heading
+        const heading = document.querySelector("body > div.container.bugfix > h4") // "Import from Shirabe Jisho" heading
         heading.innerHTML = 'Import from CSV'; // Changing the heading
 
-        const bulletOne = document.getElementsByTagName("ul")[0].firstChild; // First bullet point
+        const bulletOne = document.querySelector("body > div.container.bugfix > ul > li:nth-child(1)"); // First bullet point
         bulletOne.innerHTML += ', decks or any other correctly-formatted CSV file';
         // Add a bullet point explaining how to find the correct format
         bulletOne.insertAdjacentHTML(
