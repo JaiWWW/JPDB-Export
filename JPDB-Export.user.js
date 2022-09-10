@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPDB-Export
 // @namespace    http://tampermonkey.net/
-// @version      1.1.1
+// @version      1.1.2
 // @description  Adds a button to export deck contents, plus some other minor changes (see readme on github for full details)
 // @author       JaiWWW
 // @match        https://jpdb.io/deck*
@@ -11,6 +11,7 @@
 // @homepageURL  https://github.com/JaiWWW/JPDB-Export
 // @supportURL   https://github.com/JaiWWW/JPDB-Export/issues/new
 // @downloadURL  https://github.com/JaiWWW/JPDB-Export/raw/main/JPDB-Export.user.js
+// @updateURL    https://github.com/JaiWWW/JPDB-Export/raw/main/JPDB-Export.user.js
 // @grant        GM_setValue
 // @grant        GM_getValue
 // ==/UserScript==
@@ -18,7 +19,7 @@
 
 (function() {
     'use strict';
-    
+
     const URL = window.location.href;
 
     if (URL.startsWith('https://jpdb.io/deck')) { // Deck page
@@ -95,7 +96,7 @@
 
                     function lastPage() { // Test if we are on the last page or not
 
-                        const pagination = document.getElementsByClassName('container bugfix')[0].children[9]; // Div that shows "Next page"
+                        const pagination = document.getElementsByClassName('container bugfix')[0].children[10]; // Div that shows "Next page"
                         if (pagination.textContent.indexOf("Next page") < 0) { // Last page
                             return true;
                         } else { // More pages to go
