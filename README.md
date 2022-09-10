@@ -1,6 +1,6 @@
 # JPDB-Export
 
-### Latest version: 1.1
+## Features
 - Adds a button to export deck to CSV  
 - Exported files are importable with the Import from Shirabe Jisho option, which this script renames to Import from CSV  
 - The script also adds some info to the Import from CSV page
