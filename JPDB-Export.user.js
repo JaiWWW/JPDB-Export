@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPDB-Export
 // @namespace    http://tampermonkey.net/
-// @version      1.1.4
+// @version      1.1.5
 // @description  Allows you to export your JPDB decks (see readme on github for more info)
 // @author       JaiWWW
 // @license      GPL-3.0
@@ -19,16 +19,15 @@
 /*
 
 Changelog:
-1. Removed FileSaver.js from @require and pasted it below
-2. Replaced progress test with working URL test to enable opening decks in another tab while an export is in progress
-> You should even be able to open the same deck in another tab but there is a very small chance to break it (avoidable)
-3. Added a test to prevent multiple exports being attempted simultaneously (which would currently break the script)
-4. Added debug and superdebug modes
-5. Tweaked the match URL so the script doesn't run on the deck list page
-6. Moved the working URL test above the page tweaks to save a bit of time and energy
+1. Fixed a bug preventing the script from working on single-page decks
+2. Moved debug mode variables to the top of the script for ease of access
 
 */
 
+let debug = false; // Set true to enter debug mode
+// Any line beginning with "debug &&" will only run if this is set to true
+let superdebug = false; // Creates way more console logs
+// Any line beginning with "superdebug &&" will only run if this is set to true
 
 
 // Start of required script: FileSaver.js by eligrey
@@ -231,11 +230,6 @@ Changelog:
 (function() {
     'use strict';
 
-    let debug = false; // Set true to enter debug mode
-    // Any line beginning with "debug &&" will only run if this is set to true
-    let superdebug = false; // Creates way more console logs
-    // Any line beginning with "superdebug &&" will only run if this is set to true
-
     if (!GM_getValue('debugPass') && (debug || superdebug)) { // If debug and/or super debug mode is enabled AND debugPass is falsy
         if (window.confirm("Looks like you have debug mode enabled. Are you sure you want to continue?")) {
             if (superdebug) { // If super debug mode is enabled
@@ -377,8 +371,8 @@ Changelog:
                         debug && console.log("Called lastPage()");
 
                         const pagination = document.querySelector("body > div.container.bugfix > div.pagination"); // Div that shows "Next page"
-                        debug && console.log("pagination:", pagination);
-                        if (pagination.textContent.indexOf("Next page") < 0) { // Last page
+                        debug && pagination ? console.log("pagination:", pagination): console.log("Single-page deck detected");
+                        if (!pagination || pagination.textContent.indexOf("Next page") < 0) { // Last page
                             debug && console.log("Last page detected");
                             return true;
                         } else { // More pages to go
