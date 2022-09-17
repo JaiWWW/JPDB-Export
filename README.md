@@ -17,7 +17,7 @@
 - It's possible that exporting a deck very soon after adding cards to it from text results in the new cards not being exported. This is not confirmed and I can't think of any reason this would happen, so it may have been an error in testing rather than the script itself.
 
 ## Known bugs that I'm working on
-> All known bugs have been fixed!
+- The script replaces the delete button instead of just creating the export button. I'll fix this tomorrow (18th)
 
 ## Future ideas
 - After importing a deck from CSV, perform a check for duplicate cards caused by the first limitation described above
