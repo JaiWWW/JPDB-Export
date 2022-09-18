@@ -10,8 +10,6 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=jpdb.io
 // @homepageURL  https://github.com/JaiWWW/JPDB-Export
 // @supportURL   https://github.com/JaiWWW/JPDB-Export/issues/new
-// @downloadURL  https://github.com/JaiWWW/JPDB-Export/raw/main/JPDB-Export.user.js
-// @updateURL    https://github.com/JaiWWW/JPDB-Export/raw/main/JPDB-Export.user.js
 // @grant        GM_setValue
 // @grant        GM_getValue
 // ==/UserScript==
