@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPDB-Export
 // @namespace    http://tampermonkey.net/
-// @version      1.1.5
+// @version      1.1.6
 // @description  Allows you to export your JPDB decks (see readme on github for more info)
 // @author       JaiWWW
 // @license      GPL-3.0
@@ -19,8 +19,7 @@
 /*
 
 Changelog:
-1. Fixed a bug preventing the script from working on single-page decks
-2. Moved debug mode variables to the top of the script for ease of access
+1. Fixed a bug with export button creation in decks that were already pinned.
 
 */
 
@@ -449,8 +448,16 @@ let superdebug = false; // Creates way more console logs
         } else { // Don't bother tweaking the page if we're alredy in progress
             const menu = document.querySelector("body > div.container.bugfix > div.dropdown > details > div").firstChild; // UL of options in the menu
             debug && console.log("menu:", menu);
-            const shirabe = menu.getElementsByTagName("li")[5]; // The "Import from Shirabe Jisho" button
-            debug && console.log("shirabe:", shirabe);
+            let shirabe;
+
+            for (let i=0; i<menu.childElementCount; i++) { // Loop through looking for import button
+                if (menu.children[i].firstChild.lastChild.value === "Import from Shirabe Jisho") { // Found import button
+                    shirabe = menu.children[i];
+                    debug && console.log("Found shirabe:", shirabe);
+                    break;
+                }
+            }
+            
             shirabe.firstChild.lastChild.setAttribute('value', 'Import from CSV'); // Rename to "Import from CSV"
             debug && console.log("Renamed import button");
 
@@ -462,17 +469,13 @@ let superdebug = false; // Creates way more console logs
             exportButton.addEventListener('click', exportToCSV); // Call exportToCSV() when exportButton is clicked
             debug && console.log("Added event listener to export button");
         }
-
-
-
-
     }
 
     if (URL.startsWith('https://jpdb.io/add-to')) { // Import page
 
         debug && console.log("Import page detected");
 
-        const heading = document.querySelector("body > div.container.bugfix > h4") // "Import from Shirabe Jisho" heading
+        const heading = document.querySelector("body > div.container.bugfix > h4"); // "Import from Shirabe Jisho" heading
         debug && console.log("heading:", heading);
         heading.innerHTML = 'Import from CSV'; // Changing the heading
         debug && console.log("Changed heading");
