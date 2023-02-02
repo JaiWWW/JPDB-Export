@@ -1,12 +1,14 @@
 # JPDB-Export
 
+This script was tested with Tampermonkey in Chrome and Firefox. There have been reports that it may not work with Violentmonkey or Greasemonkey. I don't have the time or experience to try and resolve this. If you find a fix for this, I may or may not update it - depends if I get time to look over it or not!
+
 ## Features
 - Adds a button to export deck to CSV  
 - Exported files are importable with the Import from Shirabe Jisho option, which this script renames to Import from CSV  
 - The script also adds some info to the Import from CSV page
 
 ## Installation
-> To install this script, make sure you have a script manager and then click [here](https://github.com/JaiWWW/JPDB-Export/raw/main/JPDB-Export.user.js), or click <ins>JPDB-Export.user.js</ins> above and then click the **Raw** button.
+> To install this script, make sure you have Tampermonkey (may or may not work with other script managers) and then click [here](https://github.com/JaiWWW/JPDB-Export/raw/main/JPDB-Export.user.js), or click <ins>JPDB-Export.user.js</ins> above and then click the **Raw** button.
 
 ## Limitations
 - The exporter specifies the main reading and the furigana reading of each card. If your card does not have kanji, there may be other JPDB entries which will produce the same information, and the importer will choose the same entry regardless. This can result in either the wrong entry being added, or the same entry being added twice.
