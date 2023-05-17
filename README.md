@@ -1,6 +1,6 @@
 # JPDB-Export
 
-This script was tested with Tampermonkey in Chrome and Firefox. There have been reports that it may not work with Violentmonkey or Greasemonkey. I don't have the time or experience to try and resolve this. If you find a fix for this, I may or may not update it - depends if I get time to look over it or not!
+This script was tested with Tampermonkey in Chrome and Firefox. There have been reports that it may not work with Violentmonkey or Greasemonkey. I don't have the time or experience to try and resolve this. If you find a fix for this, I'll try to update it, but no guarantees.
 
 ## Features
 - Adds a button to export deck to CSV  
