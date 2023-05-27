@@ -19,7 +19,8 @@ This script was tested with Tampermonkey in Chrome and Firefox. There have been 
 - It's possible that exporting a deck very soon after adding cards to it from text results in the new cards not being exported. This is not confirmed and I can't think of any reason this would happen, so it may have been an error in testing rather than the script itself.
 
 ## Known bugs that I'm working on
-> All known bugs have been fixed!
+- I believe if you are on the first page of a deck and click export, but you have a filter selected under 'Show only', it will export items under that filter from the first page, but then go to page 2 and beyond with no filter. Before I fix this, just make sure you don't have a filter selected when you press export!
+- If you lose connection while exporting, the script will think you are still exporting and won't let you start a new export. See [this issue](https://github.com/JaiWWW/JPDB-Export/issues/9#issuecomment-1565350244) for a temporary workaround.
 
 ## Future ideas
 - After importing a deck from CSV, perform a check for duplicate cards caused by the first limitation described above
