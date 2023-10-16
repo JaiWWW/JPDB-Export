@@ -303,8 +303,14 @@ let superdebug = false; // Creates way more console logs
                         debug && console.log("vocabList:", vocabList);
 
                         let wordWrapper; // The <a> tag surrounding each word
+                        let statusWrapper; // status and frequency of word
+                        let engWrapper;  // english meaning of word
                         let stringK; // This will store the current kanji string being found to add to the CSV
                         let stringR; // This will store the current reading string being found to add to the CSV
+                        let stringE; // This will store the English meaning of the word
+                        let stringS; // This will store the status (New/Locked/Blacklisted/etc.) in your deck
+                        let stringF; // This will store the frequency ranking of the word
+                        let fileString; // This will store the line that gets added to the file each loop
                         let fileContents = GM_getValue('fileContents'); // Get the current file contents into fileContents
                         debug && console.log("File is currently", fileContents.split("\n").length-1, "lines long.");
 
@@ -314,7 +320,7 @@ let superdebug = false; // Creates way more console logs
                             superdebug && console.log(`Word number ${i}`);
                             stringK = '';
                             stringR = '';
-                            wordWrapper = vocabList.querySelector(`div:nth-child(${i}) > div:nth-child(1) > div.vocabulary-spelling > a`);
+                            wordWrapper = vocabList.querySelector(`:scope > div:nth-child(${i}) > div:nth-child(1) > div.vocabulary-spelling > a`);
                             superdebug && console.log("wordWrapper:", wordWrapper);
                             for (let j = 0; j < wordWrapper.childElementCount; j++) { // Loop through each ruby element in this word
                                 superdebug && console.log("Checking:", wordWrapper.children[j]);
@@ -329,8 +335,25 @@ let superdebug = false; // Creates way more console logs
                                     stringR += wordWrapper.children[j].children[0].textContent; // Add the furigana to the reading string
                                 }
                             }
-                            superdebug && console.log(`Adding the following line to fileContents: "${stringK},${stringR}," plus a line break`);
-                            fileContents += `${stringK},${stringR},\n`; // Append the correctly formatted strings to fileContents
+
+                            superdebug && console.log("Adding English and status to string")
+                            engWrapper = vocabList.querySelector(`:scope > div:nth-child(${i}) > div:nth-child(1) > div:nth-child(2)`);
+                            stringE = engWrapper.textContent;
+                            stringE = stringE.replaceAll('"', '""')  // replace single quotes with double quotes
+                            stringE = stringE.replaceAll(/^ */g, "")  // replace leading spaces
+
+                            statusWrapper = vocabList.querySelector(`:scope > div:nth-child(${i}) > div:nth-child(1) > div.vocabulary-spelling > div:nth-child(2)`);
+                            if (statusWrapper.childElementCount === 1) {
+                                stringS = statusWrapper.children[0].textContent;
+                                stringF = ''
+                            } else {
+                                stringS = statusWrapper.children[0].textContent;
+                                stringF = statusWrapper.children[1].textContent.replaceAll('Top ', '');  // Replace "Top 10000" with just "10000"
+                            }
+
+                            fileString = `"${stringK}","${stringR}","${stringE}","${stringS}","${stringF}"`
+                            superdebug && console.log(`Adding the following line to fileContents: "${fileString}," plus a line break`);
+                            fileContents += `${fileString}\n`; // Append the correctly formatted strings to fileContents
                         }
                         debug && console.log("Adding page to 'fileContents'");
                         GM_setValue('fileContents', fileContents); // Update the file contents
